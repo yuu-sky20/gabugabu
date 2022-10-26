@@ -1,5 +1,5 @@
 import React from "react"
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef } from "react"
 import { motion } from "framer-motion"
 import selectPt from "./game/gabugabu"
 import { range } from "./utils/util"
@@ -19,10 +19,17 @@ function App() {
     startBtnElement.current.style.visibility = "hidden"
     pt = selectPt()
     for (let i = 0; i < pt.length; i++) {
-      ;(function (i) {
-        setTimeout(setPosition, i * 1000, i)
+      ;(async function (i) {
+        await new Promise((resolve: (value?: string) => void) =>
+          setTimeout(() => {
+            setPosition(i)
+            console.log(i)
+            resolve()
+          }, i * 1000)
+        )
       })(i)
     }
+    console.log("finished")
   }
 
   let pt: number[]
