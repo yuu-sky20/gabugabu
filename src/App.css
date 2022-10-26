@@ -56,6 +56,13 @@
   background-color: darkred;
   top: 0;
   left: 0;
+  text-align: center;
+  vertical-align: center;
+}
+
+.boss p {
+  display: inline-block;
+  margin: 40% 25%;
 }
 
 .start-btn {
