@@ -32,7 +32,7 @@ function App() {
               resolve()
             }, i * 1000)
         )
-        if(i==7) {
+        if(i===7) {
           setIsFinishedGabu(true)
         }
       })(i)
