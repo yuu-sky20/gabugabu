@@ -6,6 +6,14 @@ import { range } from "./utils/util"
 import "./App.css"
 
 function App() {
+  let pt: number[]
+  const stageElement = useRef<HTMLInputElement>(null)
+  const bossElement = useRef<HTMLInputElement>(null)
+  const startBtnElement = useRef<HTMLInputElement>(null)
+  const [x, setX] = useState(0)
+  const [y, setY] = useState(0)
+  const [isFinishedGabu, setIsFinishedGabu] = useState(false)
+
   function setPosition(i: number) {
     let node = stageElement.current?.children.namedItem("stage-" + pt[i])
     if (node != null) {
@@ -14,6 +22,7 @@ function App() {
       setY(pos.y - 50)
     }
   }
+
   function moveGabu() {
     for (let i = 0; i < pt.length; i++) {
       ;(async function (i) {
@@ -29,24 +38,19 @@ function App() {
       })(i)
     }
   }
+
   function gameStart() {
+    setIsFinishedGabu(false)
     // @ts-ignore
     startBtnElement.current.style.visibility = "hidden"
     pt = selectPt()
     moveGabu()
   }
 
-  let pt: number[]
-  const stageElement = useRef<HTMLInputElement>(null)
-  const bossElement = useRef<HTMLInputElement>(null)
-  const startBtnElement = useRef<HTMLInputElement>(null)
-  const [x, setX] = useState(0)
-  const [y, setY] = useState(0)
-  const [isFinishedGabu, setIsFinishedGabu] = useState(false)
-
   useEffect(() => {
     if (isFinishedGabu) {
-      console.log("Finished")
+      // @ts-ignore
+      startBtnElement.current.style.visibility = "visible"
     }
   }, [isFinishedGabu])
 
