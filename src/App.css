@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #82f38b;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -45,9 +45,20 @@
 }
 
 .boss {
-  width: 200px;
-  height: 200px;
-  border: 3px dotted;
+  width: 300px;
+  height: 300px;
+  border: 5px dotted;
   pointer-events: none;
-  border-radius: 200px;
+  border-radius: 300px;
+  display: block;
+  position: absolute;
+  border-color: red;
+  background-color: darkred;
+  margin: 50px 50px;
+}
+
+.start-btn {
+  margin: 5em;
+  width: 100px;
+  height: 50px;
 }
