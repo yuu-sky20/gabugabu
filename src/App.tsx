@@ -1,5 +1,5 @@
 import React from "react"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import selectPt from "./game/gabugabu"
 import { range } from "./utils/util"
@@ -14,22 +14,26 @@ function App() {
       setY(pos.y - 50)
     }
   }
+  function moveGabu() {
+    for (let i = 0; i < pt.length; i++) {
+      ;(async function (i) {
+        await new Promise((resolve: (value?: string) => void) =>
+            setTimeout(() => {
+              setPosition(i)
+              resolve()
+            }, i * 1000)
+        )
+        if(i==7) {
+          setIsFinishedGabu(true)
+        }
+      })(i)
+    }
+  }
   function gameStart() {
     // @ts-ignore
     startBtnElement.current.style.visibility = "hidden"
     pt = selectPt()
-    for (let i = 0; i < pt.length; i++) {
-      ;(async function (i) {
-        await new Promise((resolve: (value?: string) => void) =>
-          setTimeout(() => {
-            setPosition(i)
-            console.log(i)
-            resolve()
-          }, i * 1000)
-        )
-      })(i)
-    }
-    console.log("finished")
+    moveGabu()
   }
 
   let pt: number[]
@@ -38,6 +42,14 @@ function App() {
   const startBtnElement = useRef<HTMLInputElement>(null)
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
+  const [isFinishedGabu, setIsFinishedGabu] = useState(false)
+
+  useEffect(() => {
+    if (isFinishedGabu) {
+      console.log("Finished")
+    }
+  }, [isFinishedGabu])
+
 
   return (
     <div className="App">
