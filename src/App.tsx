@@ -53,7 +53,11 @@ function App() {
             <div id={"stage-" + i} key={i}></div>
           ))}
         </div>
-        <motion.div className="boss" animate={{ x, y }} />
+        <motion.div
+          className="boss"
+          animate={{ x, y }}
+          transition={{ type: "tween" }}
+        />
         <button className="start-btn" onClick={() => gameStart()}>
           Start!
         </button>
