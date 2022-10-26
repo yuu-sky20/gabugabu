@@ -1,26 +1,9 @@
 import React from "react"
 import { useState, useRef } from "react"
 import { motion } from "framer-motion"
-import { pt1, pt2 } from "./game/gabuArray"
+import selectPt from "./game/gabugabu"
 import { range } from "./utils/util"
 import "./App.css"
-
-function selectPt(): number[] {
-  const patternNum = 3
-  let randomPt = Math.floor(Math.random() * patternNum)
-  let pt: number[] = []
-  switch (randomPt) {
-    case 0:
-      pt = pt1
-      break
-    case 1:
-      pt = pt2
-      break
-    default:
-      break
-  }
-  return pt
-}
 
 function App() {
   let pt: number[]
