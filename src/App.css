@@ -54,7 +54,8 @@
   position: absolute;
   border-color: red;
   background-color: darkred;
-  margin: 50px 50px;
+  top: 0;
+  left: 0;
 }
 
 .start-btn {

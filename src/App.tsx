@@ -1,7 +1,7 @@
 import React from "react"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { motion } from "framer-motion"
-import { gabuPosition, pt1, pt2 } from "./game/gabuArray"
+import { pt1, pt2 } from "./game/gabuArray"
 import { range } from "./utils/util"
 import "./App.css"
 
@@ -24,13 +24,19 @@ function selectPt(): number[] {
 
 function App() {
   let pt: number[]
-  const [x, setX] = useState(gabuPosition[pt1[0]][0] * 100)
-  const [y, setY] = useState(gabuPosition[pt2[0]][0] * 100)
+  const [x, setX] = useState(0)
+  const [y, setY] = useState(0)
+  const stageElement = useRef<HTMLInputElement>(null)
+
   function gameStart() {
     pt = selectPt()
     function setPosition(i: number) {
-      setX(gabuPosition[pt[i]][0] * 100)
-      setY(gabuPosition[pt[i]][1] * 100)
+      let node = stageElement.current?.children.namedItem("stage-" + pt[i])
+      if (node != null) {
+        let pos = node.getBoundingClientRect()
+        setX(pos.x - 50)
+        setY(pos.y - 50)
+      }
     }
     for (let i = 0; i < pt.length; i++) {
       ;(function (i) {
@@ -42,16 +48,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div className="stage">
+        <div className="stage" ref={stageElement}>
           {range(0, 3).map((i) => (
             <div id={"stage-" + i} key={i}></div>
           ))}
-          <motion.div
-            className="boss"
-            animate={{ x, y }}
-            transition={{ type: String }}
-          />
         </div>
+        <motion.div className="boss" animate={{ x, y }} />
         <button className="start-btn" onClick={() => gameStart()}>
           Start!
         </button>
