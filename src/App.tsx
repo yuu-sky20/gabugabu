@@ -47,9 +47,6 @@ function App() {
     moveGabu()
   }
 
-  function initBossPosition() {
-    setPosition(0);
-  }
 
   useEffect(() => {
     if (isFinishedGabu) {
@@ -59,7 +56,7 @@ function App() {
   }, [isFinishedGabu])
 
   useEffect(() => {
-    initBossPosition()
+    setPosition(0);
   }, [])
 
 
