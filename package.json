@@ -49,5 +49,8 @@
   "prettier": {
     "singleQuote": false,
     "semi": false
+  },
+  "rules": {
+    "react-hooks/exhaustive-deps": "off"
   }
 }
