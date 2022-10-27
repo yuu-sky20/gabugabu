@@ -74,7 +74,6 @@
 }
 
 .start-btn {
-  margin: 100px;
   width: 100px;
   height: 50px;
 }
@@ -90,6 +89,9 @@
     height: 200px;
     border-radius: 200px;
   }
+  .stage {
+    margin-top: 50px;
+  }
 }
 
 @media screen and (min-width: 960px) {
@@ -101,5 +103,8 @@
     width: 300px;
     height: 300px;
     border-radius: 300px;
+  }
+  .stage {
+    margin-top: 150px;
   }
 }
