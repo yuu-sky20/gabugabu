@@ -60,6 +60,19 @@
   display: inline-block;
 }
 
+.radio-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  gap: 2em;
+  margin-top: 100px;
+}
+
+.radio-btn-wrapper p {
+  color: black;
+}
+
 .start-btn {
   margin: 100px;
   width: 100px;

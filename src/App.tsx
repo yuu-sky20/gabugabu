@@ -1,7 +1,7 @@
 import React from "react"
 import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
-import {pt1, selectPt} from "./game/gabugabu"
+import { pt1, pt2 } from "./game/gabugabu"
 import { range } from "./utils/util"
 import "./App.css"
 
@@ -12,6 +12,7 @@ function App() {
   const startBtnElement = useRef<HTMLInputElement>(null)
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
+  const [statePt, setStatePt] = useState<number[]>(pt1)
   const [isFinishedGabu, setIsFinishedGabu] = useState(false)
 
   function setPosition(i: number) {
@@ -57,7 +58,8 @@ function App() {
     startBtnElement.current.style.visibility = "hidden"
     // @ts-ignore
     bossElement.current.style.visibility = "visible"
-    pt = selectPt()
+    // after delete
+    pt = statePt
     moveGabu()
   }
 
@@ -95,6 +97,16 @@ function App() {
         >
           <p>boss</p>
         </motion.div>
+        <div className="radio-btn-wrapper">
+          <label>
+            <input type="radio" name="pt" value="pt1" defaultChecked onChange={() => setStatePt(pt1)} />
+            <p>pattern1</p>
+          </label>
+          <label>
+            <input type="radio" name="pt" value="pt2" onChange={() => setStatePt(pt2)}/>
+            <p>pattern2</p>
+          </label>
+        </div>
         <div ref={startBtnElement}>
           <button className="start-btn" onClick={() => gameStart()}>
             Start!
