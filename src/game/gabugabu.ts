@@ -18,4 +18,4 @@ function selectPt(): number[] {
   return pt
 }
 
-export default selectPt
+export {pt1, pt2, selectPt}
