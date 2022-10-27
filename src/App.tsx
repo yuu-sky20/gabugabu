@@ -32,21 +32,38 @@ function App() {
               resolve()
             }, i * 1000)
         )
-        if(i===7) {
-          setIsFinishedGabu(true)
-        }
+        if(i===7) callBackGamePause()
       })(i)
     }
+  }
+
+  async function callBackGamePause() {
+    await new Promise((resolve: (value?: string) => void) =>
+      setTimeout(() => {
+        resolve()
+      }, 2000)
+    )
+    // @ts-ignore
+    bossElement.current.style.visibility = "hidden"
+    initBossPosition()
+
+    // after remove
+    setIsFinishedGabu(true)
   }
 
   function gameStart() {
     setIsFinishedGabu(false)
     // @ts-ignore
     startBtnElement.current.style.visibility = "hidden"
+    // @ts-ignore
+    bossElement.current.style.visibility = "visible"
     pt = selectPt()
     moveGabu()
   }
 
+  function initBossPosition() {
+    setPosition(0);
+  }
 
   useEffect(() => {
     if (isFinishedGabu) {
@@ -56,7 +73,7 @@ function App() {
   }, [isFinishedGabu])
 
   useEffect(() => {
-    setPosition(0);
+    initBossPosition()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
