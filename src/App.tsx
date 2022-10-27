@@ -1,12 +1,12 @@
 import React from "react"
 import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
-import selectPt from "./game/gabugabu"
+import {pt1, selectPt} from "./game/gabugabu"
 import { range } from "./utils/util"
 import "./App.css"
 
 function App() {
-  let pt: number[]
+  let pt = pt1
   const stageElement = useRef<HTMLInputElement>(null)
   const bossElement = useRef<HTMLInputElement>(null)
   const startBtnElement = useRef<HTMLInputElement>(null)
@@ -47,12 +47,21 @@ function App() {
     moveGabu()
   }
 
+  function initBossPosition() {
+    setPosition(0);
+  }
+
   useEffect(() => {
     if (isFinishedGabu) {
       // @ts-ignore
       startBtnElement.current.style.visibility = "visible"
     }
   }, [isFinishedGabu])
+
+  useEffect(() => {
+    initBossPosition()
+  }, [])
+
 
 
   return (
