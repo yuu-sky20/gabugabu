@@ -1,10 +1,12 @@
 .App {
   text-align: center;
+  overflow: hidden;
 }
 
 .App-header {
   background-color: #82f38b;
   min-height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,7 +68,6 @@
   align-content: center;
   flex-direction: row;
   gap: 2em;
-  margin-top: 100px;
 }
 
 .radio-btn-wrapper p {
@@ -90,7 +91,7 @@
     border-radius: 200px;
   }
   .stage {
-    margin-top: 50px;
+    margin-top: 30px;
   }
 }
 
@@ -105,6 +106,6 @@
     border-radius: 300px;
   }
   .stage {
-    margin-top: 150px;
+    margin-top: 120px;
   }
 }
