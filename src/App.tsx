@@ -15,6 +15,10 @@ function App() {
   const [statePt, setStatePt] = useState<number[]>(pt1)
   const [isFinishedGabu, setIsFinishedGabu] = useState(false)
 
+  window.addEventListener('touchmove', function(event) {
+    event.preventDefault();
+  }, {passive: false});
+
   function setPosition(i: number) {
     let node = stageElement.current?.children.namedItem("stage-" + pt[i])
     if (node != null) {
